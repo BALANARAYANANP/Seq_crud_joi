@@ -60,72 +60,72 @@ exports.deleteUser = async (req, res) => {
 
 
 
-exports.createParentAndChild = async (req, res) => {
-  const {  c , prof, skillNames} = req.body;
-  // console.log(skillNames)
+// exports.createParentAndChild = async (req, res) => {
+//   const {  c , prof, skillNames} = req.body;
+//   // console.log(skillNames)
 
-  const t = await sequelize.transaction();
-  try {
-  //     // Step 1: Create parent
-  //     const parent = await Parents.create({
+//   const t = await sequelize.transaction();
+//   try {
+//   //     // Step 1: Create parent
+//   //     const parent = await Parents.create({
 
-  //         fname : p.fname,
-  //         age: p.age
+//   //         fname : p.fname,
+//   //         age: p.age
 
-  //     }, { transaction: t }); 
+//   //     }, { transaction: t }); 
 
-      const child = await Childss.create({
-        lname: c.lname,
-        age: c.age,
+//       const child = await Childss.create({
+//         lname: c.lname,
+//         age: c.age,
        
-      }, { transaction: t });
+//       }, { transaction: t });
 
-      const profile = await Profile.create({
+//       const profile = await Profile.create({
 
-          bio : prof.bio,
-          address : prof.address,
-          // parentId: parent.id, 
-      }, {transaction : t } );
+//           bio : prof.bio,
+//           address : prof.address,
+//           // parentId: parent.id, 
+//       }, {transaction : t } );
       
-      const skills = await Promise.all(
-          skillNames.map(name =>
-            Skill.findOrCreate({ where: { name }, transaction: t }).then(([skill]) => skill)
-          )
-        );
+//       const skills = await Promise.all(
+//           skillNames.map(name =>
+//             Skill.findOrCreate({ where: { name }, transaction: t }).then(([skill]) => skill)
+//           )
+//         );
       
-        for (const skill of skills) {
-          const ps = await ParentSkill.create({
-            // parentId: parent.id,
-            skillId: skill.id
-          }, { transaction: t });
-        }
+//         for (const skill of skills) {
+//           const ps = await ParentSkill.create({
+//             // parentId: parent.id,
+//             skillId: skill.id
+//           }, { transaction: t });
+//         }
         
 
-      await t.commit(); 
+//       await t.commit(); 
       
 
-      res.status(200).send({
-          message: 'All tables Create Succuessfully',
-          // parent,
-          child, profile , skills 
-      });
-  } catch (err) {
-      await t.rollback(); 
-      console.log("Error Occurred: " + err.message);
-      res.status(500).send({ error: err.message });
-  }
-};
-// exports.getParentAndChild = async (req, res) => {
-//   try {
-//     console.log("Request received for getParentAndChild");
-
-//     const result = await Parents.findAll();
-
-//     // console.log("Result from DB:", JSON.stringify(result, null, 2));
-
-//     return res.status(200).json(result);
+//       res.status(200).send({
+//           message: 'All tables Create Succuessfully',
+//           // parent,
+//           child, profile , skills 
+//       });
 //   } catch (err) {
-//     console.error("Error in getParentAndChild:", err);
-//     return res.status(500).json({ message: "Error on Fetching Details" });
+//       await t.rollback(); 
+//       console.log("Error Occurred: " + err.message);
+//       res.status(500).send({ error: err.message });
 //   }
 // };
+// // exports.getParentAndChild = async (req, res) => {
+// //   try {
+// //     console.log("Request received for getParentAndChild");
+
+// //     const result = await Parents.findAll();
+
+// //     // console.log("Result from DB:", JSON.stringify(result, null, 2));
+
+// //     return res.status(200).json(result);
+// //   } catch (err) {
+// //     console.error("Error in getParentAndChild:", err);
+// //     return res.status(500).json({ message: "Error on Fetching Details" });
+// //   }
+// // };
