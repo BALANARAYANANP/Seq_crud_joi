@@ -1,0 +1,32 @@
+[
+    {
+        "id": 1,
+        "name": "fullstack",
+        "createdAt": "2025-05-23T11:28:40.000Z",
+        "updatedAt": "2025-05-23T11:28:40.000Z",
+        "parents": [
+            {
+                "id": 2,
+                "fname": "a",
+                "age": 56,
+                "createdAt": "2025-05-23T11:24:28.000Z",
+                "updatedAt": "2025-05-23T11:24:28.000Z"
+            }
+        ]
+    },
+    {
+        "id": 2,
+        "name": "halfstack",
+        "createdAt": "2025-05-23T11:28:40.000Z",
+        "updatedAt": "2025-05-23T11:28:40.000Z",
+        "parents": [
+            {
+                "id": 2,
+                "fname": "a",
+                "age": 56,
+                "createdAt": "2025-05-23T11:24:28.000Z",
+                "updatedAt": "2025-05-23T11:24:28.000Z"
+            }
+        ]
+    }
+]
